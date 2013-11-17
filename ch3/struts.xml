@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<constant name="struts.i18n.encoding" value="utf-8"/>
+<constant name="struts.ui.theme" value="simple"/>
+<constant name="struts.custom.i18n.resources" value="mess"></constant>
+<!-- package name是随便定义的 可以修改 与程序路径的package无关 -->
+<package name="lee" extends="struts-default" namespace="/">
+	<action name="login" class="codes3_2.LoginAction">
+		<result name="input">/codes/03/3.2/login.jsp</result>
+		<result name="error">/codes/03/3.2/error.jsp</result>
+		<result name="success">/codes/03/3.2/welcome.jsp</result>
+	</action>
+</package>
+</struts>
