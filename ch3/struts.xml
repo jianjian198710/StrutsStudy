@@ -5,13 +5,89 @@
 <struts>
 <constant name="struts.i18n.encoding" value="utf-8"/>
 <constant name="struts.ui.theme" value="simple"/>
-<constant name="struts.custom.i18n.resources" value="mess"></constant>
-<!-- package name是随便定义的 可以修改 与程序路径的package无关 -->
+<constant name="struts.custom.i18n.resources" value="mess"/>
+<constant name="struts.enable.DynamicMehtodInvocation" value="true"/>
+<!-- (1)package name是该包的唯一标识, 与程序路径的package无关
+	 (2)extends 属性值必须是另一个包的name属性,继承另一个包的全部配置,默认的struts-default包再sturts2-core*.jar中,是一个抽象包
+	 (3)namespace 主要用于处理同一个Web应用中包包含同名Action的情形,同一个命名空间不能有同名的Action,指定namespace后,Action处理的URL是 namespace/actionName
+	        当提交一个URL,如/barspace/bar.action时,系统首先查找/barspace命名空间里名为bar的Action,如果没有找到,在默认命名空间中查找名为bar的Action
+	 (4)Struts2的配置文件是从上向下处理的,所以父包应该在子包前面定义
+	 -->
 <package name="lee" extends="struts-default" namespace="/">
+		<!-- (1)action name属性既是Action的名字,也指定了该Action所处理的请求的URL 
+			 (2)class属性不是必须的,默认使用ActionSupport类-->
+<!--3.2 	
 	<action name="login" class="codes3_2.LoginAction">
 		<result name="input">/codes/03/3.2/login.jsp</result>
 		<result name="error">/codes/03/3.2/error.jsp</result>
 		<result name="success">/codes/03/3.2/welcome.jsp</result>
-	</action>
+	</action> -->
+	
+	
+<!--3.5 	
+	<action name="login" class="codes3_5.LoginAction">
+		<result name="input">/codes/03/3.5/login.jsp</result>
+		<result name="error">/codes/03/3.5/error.jsp</result>
+		<result name="success">/codes/03/3.5/welcome.jsp</result>
+	</action>  -->
+
+	
+<!--3.6 
+	将一个Action类定义多个逻辑Action,即Action每个处理方法都映射成一个逻辑Action,前提是这些方法具有相似的方法签名,返回值为String -->
+<!-- 	<action name="login" class="codes3_6.LoginRegistAction">
+		<result name="input">/codes/03/3.6/login.jsp</result>
+		<result name="error">/codes/03/3.6/error.jsp</result>
+		<result name="success">/codes/03/3.6/welcome.jsp</result>
+	</action> 
+	<action name="regist" class="codes3_6.LoginRegistAction" method="regist">
+		<result name="input">/codes/03/3.6/login.jsp</result>
+		<result name="error">/codes/03/3.6/error.jsp</result>
+		<result name="success">/codes/03/3.6/welcome.jsp</result>
+	</action>  -->
+	
+	<!-- 使用通配符*来处理3.6 如果有多个action可以匹配,则按照文件顺序(如果URL与Action的name绝对相同,则使用绝对相同的Action) -->
+<!-- 	<action name="*Action" class="codes3_6.{1}RegistAction">
+		<result name="input">/codes/03/3.6/{1}.jsp</result>
+		<result name="error">/codes/03/3.6/error.jsp</result>
+		<result name="success">/codes/03/3.6/welcome.jsp</result>
+	</action>   -->
+	<!-- 配置默认Action <default-action-ref name="login"/> -->
+	
+	
+<!-- 3.7.8 
+	<action name="login" class="codes3_7.MyAction">
+		<result name="success">/codes/03/3.7/${target}.jsp</result>
+	</action> -->
+	
+	
+<!-- 3.7.9 (1)global-results表示了一个全局结果,对所有Action有有效
+		   (2)如果一个Action里包含了与全局结果里同名的结果,局部Result会覆盖全局Result
+	<global-results>
+		<result name="success">/&{target}.jsp</result>
+	</global-results> -->
+	
+	
+<!-- 3.8声明式异常捕捉 -->
+	<!-- (1)全局Exception映射  -->
+<!-- 	<global-results>
+		<result name="sql">/codes/03/3.8/exception.jsp</result>
+	</global-results>	
+	<global-exception-mappings>
+		<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+	</global-exception-mappings>
+	(2)局部Exception映射
+	<action name="login" class="codes3_8.LoginAction">
+		<exception-mapping result="my" exception="codes3_8.MyException"></exception-mapping>
+		<result name="my">/codes/03/3.8/exception.jsp</result>
+		<result name="error">/codes/03/3.8/error.jsp</result>
+		<result name="success">/codes/03/3.8/welcome.jsp</result>
+	</action>  -->
+	
+	
+<!-- 3.10 -->
+	<action name="login" class="codes3_10.LoginAction">
+		<result name="error">/codes/03/3.10/error.jsp</result>
+		<result name="success">/codes/03/3.10/welcome.jsp</result>
+	</action>  
 </package>
 </struts>

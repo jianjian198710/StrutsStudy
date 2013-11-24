@@ -1,0 +1,7 @@
+国际化资源按作用域可分为4种:
+(1)全局    <constant name="struts.custom.i18n.resources" value="mess"/>
+(2)包	文件名以package开头,package_en_US.properties 放在包的根目录下 
+(3)Action 文件名以ActionName(变量)开头 放在Action所在的目录下
+(4)临时   在JSP中的<s:i18n>中使用
+
+加载的优先级是(4)到(1)
