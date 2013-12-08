@@ -85,9 +85,18 @@
 	
 	
 <!-- 3.10 -->
-	<action name="login" class="codes3_10.LoginAction">
+<!-- 	<action name="login" class="codes3_10.LoginAction">
 		<result name="error">/codes/03/3.10/error.jsp</result>
 		<result name="success">/codes/03/3.10/welcome.jsp</result>
-	</action>  
+	</action>   -->
+	
+	
+<!-- 3.11 -->
+	<action name="tag1" class="codes3_11.TagAction">
+		<result name="done">/codes/03/3.11/action/succ.jsp</result>
+	</action>
+	<action name="tag2" class="codes3_11.TagAction" method="login">
+		<result name="done">/codes/03/3.11/action/loginSucc.jsp</result>
+	</action>	
 </package>
 </struts>
