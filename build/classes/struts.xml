@@ -8,9 +8,40 @@
 <constant name="struts.custom.i18n.resources" value="mess"/>
 <constant name="struts.enable.DynamicMehtodInvocation" value="true"/>
 <package name="jianjian" extends="struts-default" namespace="/">
-	<action name="login" class="codes4_1.LoginAction">
+<!-- 	<action name="login" class="codes4_1.LoginAction">
 		<result name="success">/codes/04/4.1/welcome.jsp</result>
 		<result name="error">/codes/04/4.1/welcome.jsp</result>
+	</action> -->
+	
+	<action name="regist" class="codes4_2.RegistAction">
+		<result name="input">/codes/04/4.2/regist.jsp</result>
+		<result name="success">/codes/04/4.2/show.jsp</result>
+	</action>
+	
+<!-- 	<action name="uploadPro" class="codes4_3.UploadAction">
+		配置拦截器用于过滤上传的文件类型和大小
+		<interceptor-ref name="fileUpload">
+			<param name="allowedTypes">text/plain,image/pjpeg,image/gif</param>
+			<param name="maximumSize">200000</param>
+		</interceptor-ref>
+		<interceptor-ref name="defaultStack"></interceptor-ref>
+		指定保存路径
+		<param name="savePath">H:/Developer/Java work space/StrutsStudy/</param>
+		<result>/codes/04/4.3/succ.jsp</result>
+		<result name="input">/codes/04/4.3/upload.jsp</result>
+	</action>
+	<action name="*">
+		<result>/codes/04/4.3/{1}.jsp</result>
+	</action> -->
+	
+	<action name="download" class="codes4_4.FileDownloadAction">
+		<param name="inputPath">\47.jpg</param>
+		<result type="stream">
+			<param name="contentType">image/jpg</param>
+			<param name="inputName">targetFile</param>
+			<param name="contentDisposition">filename="47.jpg"</param>
+			<param name="bufferSize">4096</param>
+		</result>
 	</action>
 </package>
 </struts>
